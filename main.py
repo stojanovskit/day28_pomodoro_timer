@@ -32,19 +32,19 @@ def start_timer():
     if reps == 8:
         chk += 1
         check_label["text"] = "✓" * chk
-        count_down(20)
+        count_down(20*60)
         timer_label["text"] = "Long Break"
         timer_label["fg"] = RED
     elif reps > 8:
         count_down(0)
     elif reps % 2 == 0:
-        count_down(5)
+        count_down(5*60)
         chk += 1
         check_label["text"] = "✓"*chk
         timer_label["text"] = "Break"
         timer_label["fg"] = PINK
     else:
-        count_down(25)
+        count_down(25*60)
         timer_label["text"] = "Work"
         timer_label["fg"] = GREEN
 
@@ -59,7 +59,7 @@ def count_down(count):
     elif count_sec < 10:
         count_sec = f"0{count % 60}"
 
-    canvas.itemconfig(canvas_text, text=f"0{math.floor(count / 60)}:{count_sec}")
+    canvas.itemconfig(canvas_text, text=f"{math.floor(count / 60)}:{count_sec}")
     if count > 0:
         timer = window.after(1000, count_down, count - 1)
     else:
